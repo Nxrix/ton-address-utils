@@ -39,7 +39,7 @@ ton_address.raw2friendly = (raw,bounceable = true,testnet = false) => {
     const workchain = raw[0];
     raw = raw[1];
     let bytes = [(bounceable?0x11:0x51)|(testnet?0x80:0),workchain=="-1"?0xFF:parseInt(workchain)];
-    for (let i=0;i<32;i++) bytes.push(parseInt(raw[i*2]+raw[i*2+1],16));
+    for (let i=0;i<32;i++) bytes.push(+("0x"+raw[i*2]+raw[i*2+1]));
     const crc = ton_address.crc16(bytes.slice(0,34));
     bytes.push(crc[0],crc[1]);
     return btoa(String.fromCodePoint(...bytes)).replace(/\+/g,"-").replace(/\//g,"_");
