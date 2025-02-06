@@ -58,7 +58,7 @@ ton_address.parse = (input,testnet_flag=0) => {
   try {
     let raw_format = false;
     if (input.length>64) {
-      input = ton_address.raw2friendly(input,1,testnet_flag);
+      input = ton_address.raw2friendly(input,true,testnet_flag);
       raw_format = true;
     }
     const bytes = new Uint8Array([...atob(input.replace(/-/g,"+").replace(/_/g,"/"))].map(c=>c.charCodeAt(0)));
@@ -74,8 +74,8 @@ ton_address.parse = (input,testnet_flag=0) => {
         workchain,
         testnet,
         raw,
-        bounceable: ton_address.raw2friendly(raw,1,testnet),
-        unbounceable: ton_address.raw2friendly(raw,0,testnet)
+        bounceable: ton_address.raw2friendly(raw,true,testnet),
+        unbounceable: ton_address.raw2friendly(raw,false,testnet)
       };
     } else {
       return "Failed to parse address :(";
