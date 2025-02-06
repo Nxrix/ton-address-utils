@@ -1,5 +1,6 @@
 # ton-address-utils
 Scripts for working with TON (The Open Network) addresses.
+Based on [TON Blockchain TEPs - Address Specification](https://github.com/ton-blockchain/TEPs/blob/master/text/0002-address.md)
 
 ## Address Formats
 
@@ -22,3 +23,25 @@ There are currently two main formats used:
    Example:
    `Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF`
 
+## Usage
+
+#### Javascript
+```javascript
+ton_address.parse("Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF");
+```
+#### PHP
+```php
+TonAddress::parse("Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF");
+```
+### Output
+All methods will output the same structured data
+```json
+{
+  "input_type": "Masterchain Bounceable TON Address",
+  "workchain": -1,
+  "testnet": false,
+  "raw": "-1:3333333333333333333333333333333333333333333333333333333333333333",
+  "bounceable": "Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF",
+  "unbounceable": "Uf8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMxYA"
+}
+```
